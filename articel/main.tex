@@ -1,0 +1,34 @@
+\input{style}
+\begin{document}
+
+\input{src/title}
+\maketitle
+
+\begin{abstract}
+\input{src/Abstract}
+\end{abstract}
+
+\section{Introduction}
+\input{src/introduction}
+
+\section{Historical Overview and Related Work}
+\input{src/historical_overview}
+\input{src/related_work}
+
+\section{Methodology}
+\input{src/methodology}
+
+\section{Results} \label{sec:results}
+\input{src/results}
+
+\section{Conclusion}
+\input{src/conclusion}
+
+\bibliographystyle{splncs04}
+\bibliography{bib.bib}
+
+\section{Appendix}
+All the supporting code can be found at \href{https://github.com/ganjubas2008/garch_volatility_forecasting}{GitHub}.
+%(p.s. not completed yet)
+
+\end{document}

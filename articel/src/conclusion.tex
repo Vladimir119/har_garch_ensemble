@@ -1,0 +1,14 @@
+HAR-based models often outperform GARCH(1,1) model and always outperform Naive model, except for extreme cases. However, It is imporant to choose HAR model specification (HAR-J or HAR-Q) carefully for particular task. 
+
+\vspace{5pt}
+However, the key result of the work is the survey of various combination of models, such as stacking and bagging.
+
+\begin{itemize}
+    \item Stacking: Combining HAR, GARCH, and, surprisingly, Naive models into simple ensembles by averaging, such as Ensemble$_1$ and Ensemble$_2$, demonstrated significant improvements in volatility forecasting accuracy, with stacking ensemble outperforming all other models.
+    \item Bagging: Attempts to combine HAR and GARCH models with ARIMA for residual prediction did not yield satisfactory results, as ARIMA failed to capture the underlying distribution of residuals (\(\varepsilon_t\)).  These results suggest that while stacking offers promising improvements, bagging using ARIMA may not be the best choice for predicting residuals in this context.
+\end{itemize}
+
+
+\vspace{5pt}
+
+The authors suggest that future research should focus on employing more advanced models for bagging and refining the weight optimization in stacking ensembles. Stacking, in particular, appears to be a promising approach, consistently demonstrating exceptional performance.

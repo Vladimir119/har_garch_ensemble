@@ -1,0 +1,53 @@
+\subsection{Autocorrelation Survey}
+We performed the Ljung-Box test with the purpose of determining the presence of autocorrelation for the error term \(\varepsilon_t := \widehat{\text{RV}}_t - \text{RV}_t\). We present the results of the test in Table~\ref{tab:lijung_test}. We also present ACF and PACF plots in Figures~\ref{fig:har_acf+pacf} and~\ref{fig:garch_acf+pacf}.
+
+\input{tables/lijung_test}
+
+\begin{figure}[]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{img/har_acf+pacf.png}
+  \captionof{figure}{Plots for HAR residuals}
+  \label{fig:har_acf+pacf}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{img/garch_acf+pacf.png}
+  \captionof{figure}{Plots for GARCH residuals}
+  \label{fig:garch_acf+pacf}
+\end{minipage}
+\end{figure}
+
+As can be seen from these exhibits, strong autocorrelation exists in the residuals of the HAR model at all lags and in the residuals of the GARCH model at lags greater than 2. This potentially leaves room for improvement by creating a bagging-like model that utilizes an additional model (such as ARIMA or a more complex one) to predict the \(\varepsilon_t\) term.
+
+\subsection{Bagging with ARIMA}
+
+Both the HAR + ARIMA and GARCH + ARIMA combinations did not yield acceptable results because ARIMA could not successfully capture the underlying distribution of the \(\varepsilon_t\) term. This can be seen in Figure~\ref{fig:arima_fails}. Using a more sophisticated model instead of ARIMA seems like an interesting and promising experiment to the authors.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/arima_fails.png}
+    \caption{ARIMA does not succeed in predicting the residual of RV}
+    \label{fig:arima_fails}
+\end{figure}
+
+\subsection{Ensembling HAR and GARCH}
+Due to the completely different nature of HAR and GARCH models, a natural idea emerges: combining their predictions into a new model. It was observed that the following estimates:
+$$
+\widehat{\text{RV}}_{\text{Ensemble}_1} := \alpha_1 \cdot \widehat{\text{RV}}_{\text{HAR}} + \alpha_2 \cdot \widehat{\text{RV}}_{\text{GARCH}}
+$$
+and 
+$$
+\widehat{\text{RV}}_{\text{Ensemble}_2} :=  \beta_1 \cdot \widehat{\text{RV}}_{\text{HAR}} + \beta_2 \cdot \widehat{\text{RV}}_{\text{GARCH}} + \beta_3 \cdot \widehat{\text{RV}}_{\text{Naive}}
+$$
+sometimes outperform all single-model predictions. However, one should be careful with tuning the \(\alpha\)'s. In our experiments, we chose \(\alpha_i := \frac{1}{2}\) and \(\beta_i := \frac{1}{3}\).
+
+\subsection{Model Comparison}
+In order to maintain readability, we present only a few examples of model evaluation metrics in Tables~\ref{tab:model_metrics_A} and~\ref{tab:model_metrics_B}. We also focused our attention on HAR-type models, since GARCH-based ones were already evaluated in previous work.
+
+\vspace{10pt}
+
+As can be seen from the Tables, both HAR and GARCH models typically outperform the naive volatility persistence model in our analysis. Among the various HAR specifications tested, the vanilla \textbf{HAR} and \textbf{HAR-J} models exhibited the best overall performance. However, it is important to note that the differences in performance among the various HAR and GARCH models were quite large, typically differing by up to 30\%. Notably, the GARCH model failed when predicting the ETH-USD data, but ensembles with GARCH performed competitively. In the case of BTC-USD data, Ensemble$_2$ significantly outperformed all other models.
+
+\input{tables/model_comparison}

@@ -1,0 +1,88 @@
+\documentclass[runningheads]{llncs}
+
+\usepackage{amsmath, amsthm}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[russian]{babel}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[capitalize]{cleveref}
+\usepackage{multirow}
+\usepackage{stackengine}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{lipsum}
+\usepackage{authblk}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage{float} % for the H specifier
+\usepackage{amsmath} % For \mathscr
+\usepackage{mathrsfs} % For \mathscr
+\usepackage{calrsfs} % For \mathcal
+\usepackage{dutchcal} % For \mathdutchcal
+\usepackage{nicematrix}
+\usepackage{changepage}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{nicefrac}
+\allowdisplaybreaks
+
+\usepackage{booktabs}   % For professional-looking tables
+\usepackage{siunitx}    % For alignment of numbers by decimal point
+\usepackage{colortbl}   % For coloring cells
+\usepackage{xcolor}     % For color definitions
+\usepackage{caption}    % For better table captions
+\captionsetup{font=small, labelfont=bf}
+
+\definecolor{best}{HTML}{A6E22E}    % Greenish for better
+\definecolor{worst}{HTML}{F92672}   % Reddish for worse
+
+
+
+\usepackage{natbib}
+% \usepackage{biblatex}
+\setcitestyle{authoryear,round,citesep={;},aysep={,},yysep={;}}
+
+% \theoremstyle{plain}
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{sublemma}{Sublemma}[lemma]
+
+
+\theoremstyle{plain}
+\newtheorem{assumption}{Assumption}
+
+\theoremstyle{plain}
+\newtheorem{statement}{Statement}
+
+% \theoremstyle{plain}
+% \newtheorem{corollary}{Corollary}
+
+% \theoremstyle{remark}
+% \newtheorem*{remark}{Remark}
+
+% \theoremstyle{plain}
+% \newtheorem{theorem}{Theorem}
+
+
+%COMMANDS
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\langle #1, #2\rangle}
+\newcommand{\summ}[3]{\sum^{ #2 }_{ #1 } #3}
+\newcommand{\fsumm}[3]{\frac{1}{M}\sum^{ #2 }_{ #1 } #3}
+\newcommand{\coef}[1]{\biggr[ #1 \biggr]}
+\newcommand{\E}{\mathbb{E}}
+
+\newcommand{\mc}{\mathbcal}
+
+\definecolor{darkgreen}{RGB}{0, 128, 0} % Define a darker shade of green
+\newcommand{\greencheck}{{\color{darkgreen}\checkmark}} % Define the command with the darker green color
+%\newcommand{\greencheck}{{\color{green}\checkmark}}
+\newcommand{\redcross}{{\color{red}\textbf{\texttimes}}}
+\newcommand{\smallfont}[1]{{\small #1}}
+\renewcommand{\labelitemi}{\textbullet}
+
+\def\O{\mathcal{O}}
+\DeclareMathOperator*{\argmin}{arg\,min}

@@ -1,0 +1,57 @@
+\definecolor{neutral}{HTML}{CCCCCC}
+\definecolor{green1}{HTML}{E6F9E6}  % Lightest green
+\definecolor{green2}{HTML}{B8EB4A}  % Light green
+\definecolor{green3}{HTML}{A6E22E}  % Medium green
+\definecolor{green4}{HTML}{87D357}  % Slightly darker green
+\definecolor{green5}{HTML}{6BBF2A}  % Darker green
+\definecolor{green6}{HTML}{56A62A}  % Dark green
+\definecolor{green7}{HTML}{3F8E23}  % Darker green
+\definecolor{green8}{HTML}{2B7A1D}  % Even darker green
+\definecolor{green9}{HTML}{1D6618}  % Very dark green
+\definecolor{green10}{HTML}{0F5114} % Darkest green
+
+\definecolor{yellow1}{HTML}{FFFFC5} % Light yellow
+
+\begin{table}[ht]    
+\begin{center}
+    \begin{minipage}[t]{0.3\textwidth}
+        \small % Reduce font size
+        \caption{Performance Metrics for Model Evaluation on BTC-USD data}
+        \label{tab:model_metrics_A}
+        \sisetup{round-mode=places, round-precision=4, table-format=1.4}
+        \begin{tabular}{l S[table-format=1.4] S[table-format=1.4]}
+            \toprule
+            \rowcolor{neutral!50} \textbf{Model} & \textbf{MSSE$^{-1}$} & \textbf{MAE$^{-1}$} \\
+            \midrule
+            Naive               & \cellcolor{green1}1.0000   & \cellcolor{green1}1.0000 \\
+            HAR                 & \cellcolor{green3}1.1499   & \cellcolor{green3}1.1200 \\
+            HAR-Q               & \cellcolor{green2}1.0029   & \cellcolor{green2}1.0382 \\
+            HAR-J               & \cellcolor{green4}1.1298   & \cellcolor{green4}1.1124 \\
+            GARCH               & \cellcolor{green2}1.0517   & \cellcolor{green2}1.0198 \\
+            Ensemble$_1$           & \cellcolor{green5}1.1659   & \cellcolor{green5}1.1034 \\
+            Ensemble$_2$       & \cellcolor{green6}1.3380   & \cellcolor{green6}1.1796 \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \hspace{50pt} % Adjust spacing if needed
+    \begin{minipage}[t]{0.3\textwidth}
+        \small % Reduce font size
+        \caption{Performance Metrics for Model Evaluation on ETH-USD data}
+        \label{tab:model_metrics_B}
+        \sisetup{round-mode=places, round-precision=4, table-format=1.4}
+        \begin{tabular}{l S[table-format=1.4] S[table-format=1.4]}
+            \toprule
+            \rowcolor{neutral!50} \textbf{Model} & \textbf{MSE$^{-1}$} & \textbf{MAE$^{-1}$} \\
+            \midrule
+            Naive               & \cellcolor{green1}1.0000   & \cellcolor{green1}1.0000 \\
+            HAR                 & \cellcolor{green3}1.2038   & \cellcolor{green4}1.1445 \\
+            HAR-Q               & \cellcolor{green3}1.1969   & \cellcolor{green3}1.1080 \\
+            HAR-J               & \cellcolor{green4}1.2495   & \cellcolor{green5}1.1709 \\
+            GARCH               & \cellcolor{yellow1}0.6564   & \cellcolor{yellow1}0.8563 \\
+            Ensemble$_1$           & \cellcolor{green2}1.0233   & \cellcolor{green2}1.0248 \\
+            Ensemble$_2$     & \cellcolor{green3}1.1947   & \cellcolor{green3}1.1083 \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \end{center}
+\end{table}

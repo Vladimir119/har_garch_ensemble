@@ -3,9 +3,9 @@
     \item \textbf{HAR Model \cite{corsi2009}, 2009} \\
     The Heterogeneous Autoregressive (HAR) model captures realized volatility over daily, weekly, and monthly horizons. Its structure is:
     \begin{equation}\label{har-formula}
-        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}_{t-7} + \beta_3 \text{RV}_{t-30} + \varepsilon_t,
+        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}^{w}_{t-1} + \beta_3 \text{RV}^{m}_{t-1} + \varepsilon_t,
     \end{equation}
-    where \(\text{RV}_{t-1}\), \(\text{RV}_{t-7}\), and \(\text{RV}_{t-30}\) represent realized volatility over daily, weekly, and monthly timeframes, respectively.
+    where \(\text{RV}_{t-1}\), \(\text{RV}^{w}_{t-1}\), and \(\text{RV}^{m}_{t-1}\) represent realized volatility over daily, weekly, and monthly timeframes, respectively.
 
     \item \textbf{Jump Components in Volatility Modeling} \\
     The jump component captures sudden, discrete, and extreme movements in asset prices, which are distinct from the smooth, continuous fluctuations typically modeled in financial time series. These components contribute to the fat tails of return distributions and significantly affect risk metrics like Value at Risk (VaR) and Expected Shortfall.
@@ -42,33 +42,35 @@
         \item \textbf{HAR-CJ \cite{har-cj}, 2007} \\
         Extends HAR by incorporating jump components:
         \[
-        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}_{t-7} + \beta_3 \text{RV}_{t-30} + \beta_4 \text{J}_{t} + \varepsilon_t,
+        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}^{w}_{t-1} + \beta_3 \text{RV}^{m}_{t-1} + \beta_4 \text{J}_{t} + \varepsilon_t,
         \]
         where \(\text{J}_t\) represents the jump component.
 
         \item \textbf{HAR-RV-C \cite{har-rv-c}, 2012} \\
         Adds external covariates (\(\text{C}_t\)), such as macroeconomic indicators:
         \[
-        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}_{t-7} + \beta_3 \text{RV}_{t-30} + \beta_4 \text{C}_t + \varepsilon_t.
+        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}^{w}_{t-1} + \beta_3 \text{RV}^{m}_{t-1} + \beta_4 \text{C}_t + \varepsilon_t.
         \]
 
         \item \textbf{HAR-Q Model \citep{harq}, 2016} \\
         The HAR-Q model extends the standard HAR model by incorporating the fourth moment (kurtosis) of the return distribution. This allows the model to capture the effects of heavy tails in volatility, improving its forecasting ability for extreme events and tail risk. The HARQ model can be specified as:
-        
-        \[
-        \text{RV}_t = \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}_{t-7} + \beta_3 \text{RV}_{t-30} + \beta_4 \text{Kurt}_{t-1} + \varepsilon_t,
-        \]
+        \begin{align*}
+            \text{RV}_t &= \beta_0 + \beta_1 \text{RV}_{t-1} + \beta_2 \text{RV}^{w}_{t-1} + \beta_3 \text{RV}^{m}_{t-1} \\
+            & + \beta_4 \sqrt{\text{RQ}_{t-1}} \cdot \text{RV}_{t-1} + 
+        \beta_5 \sqrt{\text{RQ}^{w}_{t-1}} \cdot \text{RV}^{w}_{t-1} \\
+        & + \beta_6 \sqrt{\text{RQ}^{m}_{t-1}} \cdot \text{RV}^{m}_{t-1} + \varepsilon_t
+        \end{align*}
 
         \item \textbf{HAR-Log \cite{har-log}, 2015} \\
         Models the logarithm of realized volatility to handle heteroscedasticity:
         \[
-        \log(\text{RV}_t) = \beta_0 + \beta_1 \log(\text{RV}_{t-1}) + \beta_2 \log(\text{RV}_{t-7}) + \beta_3 \log(\text{RV}_{t-30}) + \varepsilon_t.
+        \log(\text{RV}_t) = \beta_0 + \beta_1 \log(\text{RV}_{t-1}) + \beta_2 \log(\text{RV}^{w}_{t-1}) + \beta_3 \log(\text{RV}^{m}_{t-1}) + \varepsilon_t.
         \]
 
         \item \textbf{HAR-M \cite{har-m}, 2016} \\
         Extends HAR to multivariate settings, capturing covariances between asset volatilities:
         \[
-        \text{RV}_{t,i} = \beta_{0,i} + \beta_{1,i} \text{RV}_{t-1,i} + \beta_{2,i} \text{RV}_{t-7,i} + \beta_{3,i} \text{RV}_{t-30,i} + \sum_{j \neq i} \gamma_{ij} \text{RV}_{t,j} + \varepsilon_{t,i}.
+        \text{RV}_{t,i} = \beta_{0,i} + \beta_{1,i} \text{RV}_{t-1,i} + \beta_{2,i} \text{RV}^{w}_{t-1,i} + \beta_{3,i} \text{RV}^{m}_{t-1,i} + \sum_{j \neq i} \gamma_{ij} \text{RV}_{t,j} + \varepsilon_{t,i}.
         \]
 
     \end{itemize}
